@@ -1,0 +1,146 @@
+/*.modal-footer button:hover {*/
+/*  background-color: orange;*/
+/*}*/
+
+.body-1{
+  content: ' ';
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  /*opacity: 0.7;*/
+  /*background-image: url("./image/login-background.jpeg");*/
+  background-image: linear-gradient(45deg, rgba(255,255,255,0.3), rgba(0,0,0,0.3)), url("./image/login-background.jpeg");
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+}
+/*:root {*/
+/*  --main-color : rgb(236, 155, 68);*/
+/*}*/
+* {
+  /*padding: 0.4rem;*/
+  padding: 0.3rem;
+  margin: 0;
+  font-family: Arial;
+  font-size: 18px;
+  box-sizing: border-box;
+}
+.modal-body {
+  padding-left: 15px;
+}
+.modal-footer {
+  display: flex;
+  justify-content: center;
+
+}
+.modal-header {
+  display: flex;
+  justify-content: center;
+}
+.table-wrapper {
+  margin-top: 150px;
+}
+.informationCss {
+  display: flex;
+  justify-content: center;
+}
+h4 span {
+  font-size: 2rem;
+}
+h4 span:hover {
+  color: orange;
+}
+#inputPassword {
+  border: 0px;
+  background-color: #F6F1F1;
+  padding-left: 0;
+  width: 30%;
+  position: relative;
+}
+#iconPassword{
+  position: absolute;
+}
+
+
+.button {
+  background-color: var(--main-color);
+  color: #fff;
+  border-radius: 20px;
+  box-shadow: 1px 2px 2px 2px #a09a9a;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.table-title {
+  border-radius: 20px;
+  background-color: var(--main-color);
+}
+.button:hover {
+  background-color: orange;
+  color: #000;
+}
+.modal-title span {
+  color: var(--main-color);
+}
+.modal-content {
+  border-color: var(--main-color);
+  background-color: #F6F1F1;
+  border-radius: 20px;
+}
+.modal-header {
+  border-color: var(--main-color);
+  /*padding: 0.4rem;*/
+  padding: 10px 0;
+}
+.modal-footer {
+  border-color: var(--main-color);
+}
+
+@media only screen and (max-width: 576px) {
+  * {
+    margin-top: 10px;
+    /*margin: 10px 2px 10px 2px;*/
+
+    font-size: 15px;
+    padding: 1px;
+  }
+  #iconPassword{
+    position: absolute;
+    top: 8%;
+  }
+
+  .button {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 70%;
+    /*box-shadow: 5px 5px 5px #DBD9D9;*/
+  }
+  .button:first-child {
+    margin-top: 10px;
+  }
+  .button:last-child {
+    margin-bottom: 10px;
+  }
+  .modal-header {
+    padding-bottom: 20px;
+  }
+}
+@media only screen and (min-width: 577px) and (max-width: 692px){
+  * {
+    padding: 1.5px;
+    font-size: 15px;
+  }
+
+  .modal-footer {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+

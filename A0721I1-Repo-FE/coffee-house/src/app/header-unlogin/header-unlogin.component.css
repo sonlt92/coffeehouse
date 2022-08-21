@@ -1,0 +1,172 @@
+.header{
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:1.5rem 7%;
+  border-bottom: var(--border);
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding-right: 200px;
+}
+
+.header .logo img{
+  height: 6rem;
+}
+
+.header .navbar a{
+  margin:0 1rem;
+  font-size: 1.6rem;
+  color:#fff;
+}
+
+.header .navbar a:hover{
+  color:var(--main-color);
+  /*border-bottom: .1rem solid var(--main-color);*/
+  padding-bottom: .5rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.adminList:hover{
+  color:var(--main-color);
+  /*border-bottom: .1rem solid var(--main-color);*/
+  padding-bottom: .5rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.btn-login{
+  display: inline-block;
+  padding:.9rem 3rem;
+  font-size: 1.7rem;
+  color: white !important;
+  background: black;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.btn-login:hover{
+  background-color: var(--main-color);
+  color: black !important;
+}
+
+.header .icons{
+  display: flex;
+}
+
+.header .icons div{
+  color:#fff;
+  cursor: pointer;
+  font-size: 1.6rem;
+  margin-left: 3rem;
+}
+
+.header .icons div:hover{
+  color:var(--main-color);
+}
+
+.header .icons .noidung_dropdown{
+  margin: 0;
+}
+
+.icons{
+  align-items: center;
+}
+
+.dropdown a{
+  margin: 0;
+}
+
+.noidung_dropdown {
+  /*Ẩn nội dụng các đường dẫn*/
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.noidung_dropdown a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.noidung_dropdown a{
+  background-color: black;
+  color: rgb(236, 155, 68);
+}
+
+.noidung_dropdown a:hover{
+  color: white;
+}
+
+.hienThi{
+  display: flex;
+  font-size: 15px;
+  flex-direction: column;
+  width: 200px;
+}
+
+.hienThi a{
+  font-size: 18px;
+  padding-block: 12px;
+  padding-inline: 14px;
+}
+
+.hienThi a:hover{
+  text-decoration: none;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  align-items: center;
+  /*border-bottom: .1rem solid var(--main-color);*/
+  /*padding-bottom: .5rem;*/
+}
+
+.dropdown .nut_dropdown{
+  cursor: pointer;
+}
+
+.dropdown .nut_dropdown:hover{
+  background-color:var(--main-color);
+  /*padding-bottom: .5rem;*/
+}
+
+.dropdown:hover .noidung_dropdown{
+  display: block;
+}
+
+
+.noi_dropdown {
+  /*Ẩn nội dụng các đường dẫn*/
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 160px;
+  z-index: 1;
+}
+/* Thiết kế style cho các đường dẫn tronng Dropdown */
+.noi_dropdown a {
+  color: black;
+  padding: 12px 16px;
+  display: block;
+}
+
+.inRa{
+  display:block;
+  margin-top: 3px;
+}
+
+.inRa a:hover{
+  color: black;
+  text-decoration: none !important;
+  padding-bottom: 12px !important;
+}

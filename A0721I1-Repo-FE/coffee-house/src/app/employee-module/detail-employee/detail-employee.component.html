@@ -1,0 +1,81 @@
+<div class="body-1">
+  <div class="informationCss">
+    <div class="col-xl-6 col-xs-12 col-lg-7 col-md-9 col-sm-9">
+      <div class="container">
+        <div class="row">
+          <div class="table-responsive">
+            <div class="table-wrapper">
+              <div class="table-title">
+                <div class="modal-content" >
+                  <div class="col">
+                    <div class="modal-header" >
+                      <h4 class="modal-title text-center"> <span>Thông tin tài khoản</span></h4>
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <div class="row">
+                    <div class="modal-body">
+                      <table  class="col-11">
+                        <tr>
+                          <td>Tên tài khoản:</td>
+                          <td>{{employee.user?.username}}</td>
+                        </tr>
+                        <!--                        <tr>-->
+                        <!--                          <td >Mật khẩu:</td>-->
+                        <!--                          &lt;!&ndash;                          <td>{{employee.user1?.password}} </td>&ndash;&gt;-->
+                        <!--                          <td><input id="inputPassword" type="password" value="{{employee.user?.password}}" disabled>-->
+                        <!--                            <span  id="iconPassword" (click)="showPassword()"><i class='bx bx-show'></i></span>-->
+                        <!--                          </td>-->
+
+                        <!--                        </tr>-->
+                        <tr>
+                          <td>Họ và tên:</td>
+                          <td>{{employee.nameEmployee}}</td>
+                        </tr>
+                        <tr>
+                          <td>Địa chỉ:</td>
+                          <td>{{employee.addressEmployee}}</td>
+                        </tr>
+                        <tr>
+                          <td>Giới tính:</td>
+                          <td *ngIf="employee.genderEmployee == true">Nam</td>
+                          <td *ngIf="employee.genderEmployee == false">Nữ</td>
+                        </tr>
+                        <tr>
+                          <td>Số điện thoại:</td>
+                          <td>{{employee.phoneEmployee}}</td>
+                        </tr>
+                        <tr>
+                          <td>Ngày sinh:</td>
+                          <td>{{employee.dateOfBirthEmployee}}</td>
+                        </tr>
+                        <tr>
+                          <td>Lương(VNĐ):</td>
+                          <td>{{employee.salaryEmployee | number :'1.0-3'}}</td>
+                        </tr>
+                        <tr>
+                          <td>Vị trí:</td>
+                          <td>{{employee.position?.namePosition}}</td>
+                        </tr>
+                        <br>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="modal-footer row">
+                    <button class="button btn col-7 col-md-3 col-sm-3" (click)="back()"> << Quay lại</button>
+                    <button class="button btn col-7 col-md-4 col-sm-4" [disabled]="employee.position?.namePosition=='Nhân viên' " [routerLink]="['/employee/edit' , employee.idEmployee]">Cập nhập thông tin</button>
+                    <!--                    <button class="button btn col-7 col-md-4 col-sm-4" [disabled]="employee.role?.nameRole=='MEMBER'" >Cập nhập thông tin</button>-->
+                    <button class="button btn col-7 col-md-4 col-sm-4" [routerLink]="['/home']">Thay đổi mật khẩu</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

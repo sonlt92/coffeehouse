@@ -1,0 +1,29 @@
+<h1 class="title-product" style="text-align: center">Quản lý <span style="color: rgb(236, 155, 68)">Bán Hàng</span></h1>
+<h2 class="list-product-title">Danh Sách Bàn</h2>
+<div class="container">
+  <div class="row mt-5">
+    <div class="sale-group">
+      <div class="row">
+        <div *ngFor="let tab of tables" class="col-md-3 col-sm-6 col-12">
+          <div class="card card-product mb-3">
+            <img class="card-img-top" alt="Card image cap" src="../../../assets/img/table.jpeg">
+            <div class="card-body">
+              <h5 class="card-title">Bàn {{tab.codeTable}}</h5>
+              <p class="card-text">Trạng thái :
+                <a class="text-danger" *ngIf="tab.emptyTable == false">Đã đặt</a>
+                <a class="status" *ngIf="tab.emptyTable == true">Còn</a>
+              </p>
+              <a href="#" class="btn btn-warning" [routerLink]="['../detail',tab.idTable]" *ngIf="!tab.emptyTable">Chi
+                tiết</a>
+              <a class="btn btn-outline-warning" *ngIf="tab.emptyTable" (click)="addOrderBeNull(tab.idTable)">Đặt
+                bàn</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

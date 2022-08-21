@@ -1,0 +1,197 @@
+<div *ngIf="message != null">
+  <div id="noti" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <h4 class="alert-heading text-warning">Thông báo!!</h4>
+    <strong>Xin chào!</strong>
+    <p *ngIf="message != null" class="message-body">{{message}}</p>
+    <button type="button" class="close" (click)="hide()" aria-label="Close">
+      <span>&times;</span>
+    </button>
+    <hr>
+  </div>
+</div>
+<div class="main">
+  <div class="container-flutter">
+    <div class="table-title">
+      <h2>Danh sách bàn</h2>
+    </div>
+
+    <div class="row justify-content-between align-items-center">
+      <div class="col-2">
+        <button class="learn-more">
+                    <span class="circle" aria-hidden="true">
+                    <span class="icon arrow">
+                    </span>
+                    </span>
+          <span [routerLink]="['/table/create']" class="button-text">Thêm mới bàn</span>
+        </button>
+      </div>
+      <div class="col-10">
+        <form [formGroup]="formSearch" (ngSubmit)="submitFormSearch(0)" class="d-flex align-items-center form__search justify-content-end">
+          <input type="text" class="form-control ml-3" style="width: 25%; height: 30px" placeholder="Số bàn" formControlName="tableNumber" (ngModelChange)="changeTableNumber($event)">
+
+          <select class="form-control ml-3" style="width: 25%; height: 30px" formControlName="status">
+            <option value="null" [selected]="true">--Vui Lòng Chọn--</option>
+            <option value="1">Tốt</option>
+            <option value="2">Lỗi</option>
+          </select>
+
+            <select class="form-control ml-3" style="width: 25%; height: 30px" formControlName="emptyTable">
+              <option value="null" [selected]="true">--Vui Lòng Chọn--</option>
+              <option value="true">Còn trống</option>
+              <option value="false">Đã đặt</option>
+            </select>
+
+          <button type="submit" class="ml-3 button__1"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+      </div>
+    </div>
+
+    <table class="table">
+      <tr>
+        <th>STT</th>
+        <th>Số bàn</th>
+        <th>Trạng thái</th>
+        <th>Trống</th>
+        <th>Sửa</th>
+        <th>Xoá</th>
+      </tr>
+      <tr *ngFor="let table of tables; index as i">
+        <td>{{i+1}}</td>
+        <td><a (click)="returnTableDetail(table.idTable)">{{table.codeTable}}</a></td>
+        <td>
+          <div *ngIf="table.status.idStatus == 1; then good else bad"></div>
+          <ng-template #good>Tốt</ng-template>
+          <ng-template #bad>Lỗi</ng-template>
+        </td>
+        <td>
+          <div *ngIf="table.emptyTable; then empty else notEmpty"></div>
+          <ng-template #empty>
+            <label class="switch">
+              <input type="checkbox" checked="1" disabled>
+              <span class="slider round"></span>
+            </label>
+          </ng-template>
+          <ng-template #notEmpty>
+            <label class="switch">
+              <input type="checkbox" disabled>
+              <span class="slider round"></span>
+            </label>
+          </ng-template>
+        </td>
+        <td>
+          <div *ngIf="table.emptyTable===true;then content else other_content"></div>
+          <ng-template #content>
+            <a [routerLink]="['../edit/',table.idTable]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                 class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </a>
+          </ng-template>
+          <ng-template #other_content>
+            <a (click)="checkEdit(table.codeTable)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                 class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </a>
+          </ng-template>
+        </td>
+        <td>
+          <a data-toggle="modal" [attr.data-target]="'#deleteModal' + table.idTable">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                 class="bi bi-trash" viewBox="0 0 16 16">
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+              <path fill-rule="evenodd"
+                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+            </svg>
+          </a>
+        </td>
+
+        <!-- Modal -->
+        <div class="modal fade" [attr.id]="'deleteModal' + table.idTable" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel"><b>Xoá bàn</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div>Số bàn: {{table.codeTable}}</div>
+                <div *ngIf="table.status.idStatus == 1; then goodTable else badTable"></div>
+                <div>
+                  <ng-template #goodTable>Trạng thái: Tốt</ng-template>
+                  <ng-template #badTable>Trạng thái: Lỗi</ng-template>
+                </div>
+                <div *ngIf="table.emptyTable; then emptyTable else notEmptyTable"></div>
+                <div>
+                  <ng-template #emptyTable class="ng-template">Còn trống</ng-template>
+                  <ng-template #notEmptyTable class="ng-template">Đã đặt</ng-template>
+                </div>
+                <div class="delete-message">Thao tác này không thể hoàn tác!</div>
+              </div>
+              <div class="modal-footer">
+                <div type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</div>
+                <div type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteTable(table.idTable)">
+                  Xoá
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tr>
+    </table>
+
+    <div class="clearfix">
+        <nav aria-label="...">
+          <ul class="pagination">
+            <div *ngIf="pageNumber > 0; then enablePrevious else disablePrevious"></div>
+            <ng-template #enablePrevious>
+              <li class="page-item">
+                <span class="page-link" (click)="perviousPage()">Trang trước</span>
+              </li>
+            </ng-template>
+            <ng-template #disablePrevious>
+              <li class="page-item disabled">
+                <span class="page-link">Trang trước</span>
+              </li>
+            </ng-template>
+
+            <div *ngFor="let page of totalPage; index as i">
+                <div *ngIf="pageNumber == i; then isCurrentPage else notCurrentPage"></div>
+                <ng-template #isCurrentPage>
+                  <li class="page-item active">
+                    <span class="page-link" (click)="changePageNumber(i)">{{i + 1}}</span>
+                  </li>
+                </ng-template>
+                <ng-template #notCurrentPage>
+                  <li class="page-item">
+                    <span class="page-link" (click)="changePageNumber(i)">{{i + 1}}</span>
+                  </li>
+                </ng-template>
+            </div>
+
+            <div *ngIf="pageNumber < totalPage.length - 1; then enableNext else disableNext"></div>
+            <ng-template #enableNext>
+              <li class="page-item">
+                <span class="page-link" (click)="nextPage()">Trang sau</span>
+              </li>
+            </ng-template>
+            <ng-template #disableNext>
+              <li class="page-item disabled">
+                <span class="page-link">Trang sau</span>
+              </li>
+            </ng-template>
+          </ul>
+        </nav>
+    </div>
+  </div>
+</div>

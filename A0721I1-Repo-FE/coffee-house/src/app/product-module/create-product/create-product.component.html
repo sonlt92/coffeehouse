@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>Thêm Món</title>
+  <link href="http://fonts.googleapis.com/css?family=Playfair+Display:900" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Alice:400,700" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
+<div class="section" id="booking">
+  <div class="section-center">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="booking-form">
+          <div class="booking-bg">
+            <div class="form-header">
+              <h2>Quản Lý Cafe Thông Minh - A0721I1</h2>
+              <p>Một tách cà phê uống vào buổi sáng mang lại sự hưng phấn tuyệt vời mà không một tách cà phê nào khác dù
+                là buổi chiều hay buổi tối có thể tạo ra được</p>
+            </div>
+          </div>
+          <form (ngSubmit)="submit()" [formGroup]="createForm">
+            <div class="header-content">
+              <h2>Thêm Món</h2>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Mã Số Món<a style="color: red"> (*)</a> :</span>
+                  <input class="form-control" formControlName="codeProduct" id="exampleFormControlInput1" type="text">
+                  <div *ngFor="let validation of VALIDATION_MESSAGE.codeProduct" class="text-danger">
+                    <div *ngIf="createForm.get('codeProduct').hasError(validation.type) && (createForm.get('codeProduct').dirty || createForm.get('codeProduct').touched)"
+                         class="error-message">
+                      {{validation.message}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Tên Món<a style="color: red"> (*)</a> :</span>
+                  <input class="form-control" formControlName="nameProduct" type="text">
+                  <div *ngFor="let validation of VALIDATION_MESSAGE.nameProduct" class="text-danger">
+                    <div *ngIf="createForm.get('nameProduct').hasError(validation.type) && (createForm.get('nameProduct').dirty || createForm.get('nameProduct').touched)"
+                         class="error-message">
+                      {{validation.message}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Giá (VNĐ)<a style="color: red"> (*)</a> :</span>
+                  <input class="form-control" formControlName="priceProduct" type="text">
+                  <div *ngFor="let validation of VALIDATION_MESSAGE.priceProduct" class="text-danger">
+                    <div *ngIf="createForm.get('priceProduct').hasError(validation.type) && (createForm.get('priceProduct').dirty || createForm.get('priceProduct').touched)"
+                         class="error-message">
+                      {{validation.message}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Số lượng<a style="color: red"> (*)</a> :</span>
+                  <input class="form-control" formControlName="quatityProduct" type="number">
+                  <div *ngFor="let validation of VALIDATION_MESSAGE.amountProduct" class="text-danger">
+                    <div *ngIf="createForm.get('quatityProduct').hasError(validation.type) && (createForm.get('quatityProduct').dirty || createForm.get('quatityProduct').touched)"
+                         class="error-message">
+                      {{validation.message}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Mô tả :</span>
+                  <input class="form-control" formControlName="descriptionProduct" type="text">
+                  <div *ngFor="let validation of VALIDATION_MESSAGE.descriptionProduct" class="text-danger">
+                    <div *ngIf="createForm.get('descriptionProduct').hasError(validation.type) && (createForm.get('descriptionProduct').dirty || createForm.get('descriptionProduct').touched)"
+                         class="error-message">
+                      {{validation.message}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Nhóm Món<a style="color: red"> (*)</a> :</span>
+                  <select class="form-control" formControlName="typeProduct" id="val-skill" name="val-skill" [ngClass]="{ 'is-invalid': submitted && valueSelect.typeProduct.errors }">
+                    <option *ngFor="let index of typeProduct" [ngValue]="index"
+                            [selected]="index.idTypeProduct === createForm.controls.typeProduct.value.idTypeProduct">{{index.nameTypeProduct}}</option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="submitted && valueSelect.typeProduct.errors">
+                    <div *ngIf="valueSelect.typeProduct.errors.required">
+                      Vui lòng chọn nhóm món.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Hình ảnh <a style="color: red"> (*)</a> :</span>
+                </div>
+                <input (change)="showPreview($event)" class="file__input" id="image" name="image" required="required"
+                       type="file">
+                <img class="avatar" src="{{imgVip}}" style="height: 160px; width: 160px;">
+                <label class="file__label" for="image">
+
+                </label>
+                <div>
+                  <p *ngIf=" errorImage!= ''" style="color: red">{{errorImage}}</p>
+                </div>
+              </div>
+            </div>
+            <a class="form-control" formControlName="createAt" hidden disabled ></a>
+
+            <div class="row">
+              <div class="form-btn col-md-6">
+                <a [routerLink]="'/product/list'" (click)="back()">
+                  <button class="submit-btn">
+                    <svg height="18px" style="fill: white; line-height: 54px; msFilter:''" width="24"
+                         xmlns="http://www.w3.org/2000/svg">
+                      <path d="m8.121 12 4.94-4.939-2.122-2.122L3.879 12l7.06 7.061 2.122-2.122z"></path>
+                      <path d="M17.939 4.939 10.879 12l7.06 7.061 2.122-2.122L15.121 12l4.94-4.939z"></path>
+                    </svg>
+                    Trở về
+                  </button>
+                </a>
+              </div>
+              <div class="form-btn col-md-6">
+                <button class="submit-btn">Thêm mới</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+
+</html>

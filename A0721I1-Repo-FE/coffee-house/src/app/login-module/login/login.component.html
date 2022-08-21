@@ -1,0 +1,31 @@
+<div class="login" ng-show="authenticated" style="z-index: 20000">
+  <form (submit)="login($event)" [formGroup]="formLogin" method="post" style="background-color:#f1f1f1;">
+    <h2>Đăng Nhập</h2>
+    <div class="container">
+      <div class="form">
+        <label><b>Tên đăng nhập</b></label>
+        <input formControlName="username" type="text" placeholder="Nhập tên đăng nhập" name="uname" id="uname" required>
+
+        <label><b>Mật khẩu</b></label>
+        <div class="password">
+          <input formControlName="password" [type]="show ? 'text' : 'password'" placeholder="Nhập mật khẩu" name="psw" id="psw" required>
+          <input type="button" name="Hiện mật khẩu" style="background-color: white" (click)="showPsw()">
+        </div>
+
+      </div>
+      <button type="submit" class="orange">Đăng nhập</button>
+      <label id="remember">
+<!--        <input type="checkbox" name="Nhớ mật khẩu">  Nhớ mật khẩu-->
+      </label>
+      <a routerLink="/forgot-password/forgot-password-child" style="font-size: 17px">Quên mật khẩu ?</a>
+    </div>
+    <div class="container-cancel" style="height: 70px;">
+      <button type="button" class="cancelbtn red" [routerLink]="'/home'">Trở lại trang chủ</button>
+    </div>
+    <div class="register">
+      <span>Nhấn vào đây để </span><a>Đăng ký</a>
+    </div>
+  </form>
+</div>
+
+

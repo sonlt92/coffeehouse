@@ -1,0 +1,254 @@
+/*!
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ *//*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}
+audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],
+                                                                                                                     template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,
+                                                                                                                                                                                                                                          strong{font-weight:700}dfn{font-style:italic}h1{margin:.67em 0;font-size:2em}mark{color:#000;
+                                                                                                                                                                                                                                                                                                                         background:#ff0}small{font-size:80%}sub,sup{position:relative;font-size:75%;line-height:0;
+                                                                                                                                                                                                                                                                                                                                                               vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{height:0;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            -webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                input,optgroup,select,textarea{margin:0;font:inherit;color:inherit}button{overflow:visible}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}input{line-height:normal}input[type=checkbox],input[type=radio]{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:0}input[type=number]::-webkit-inner-spin-button,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           input[type=number]::-webkit-outer-spin-button{height:auto}input[type=search]{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;-webkit-appearance:textfield}input[type=search]::-webkit-search-cancel-button,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       input[type=search]::-webkit-search-decoration{-webkit-appearance:none}fieldset{padding:.35em .625em .75em;margin:0 2px;border:1px solid silver}legend{padding:0;border:0}textarea{overflow:auto}optgroup{font-weight:700}table{border-spacing:0;border-collapse:collapse}td,
+/*# sourceMappingURL=bootstrap.min.css.map */
+
+
+
+
+.section {
+  position: relative;
+  height: 100vh;
+}
+:root{
+  --color-content: rgb(203, 118, 28);
+}
+.section .section-center {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#booking {
+  font-family: 'Alice', serif;
+  background: rgba(133, 104, 73, 0.53);
+}
+
+.booking-form {
+  position: relative;
+  width: 80%;
+  width: 100%;
+  margin: auto;
+  background: #fff;
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form .booking-bg {
+  position: absolute;
+  left: 25px;
+  top: -25px;
+  bottom: -25px;
+  width: 400px;
+  background-image: url('../edit-table/image/hinh-anh-ly-cafe-dep-1.jpeg');
+  background-size: cover;
+  background-position: center;
+  padding: 25px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.header-content{
+  text-align: center;
+  color: orange;
+  font-family: 'Playfair Display', serif;
+}
+.booking-form .booking-bg::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: rgba(236, 155, 68, 0.6);
+}
+
+.booking-form>form {
+  margin-left: 425px;
+  padding: 30px;
+}
+
+.booking-form .form-header {
+  margin-bottom: 30px;
+  margin-top: 60px;
+  position: relative;
+  z-index: 20;
+}
+
+.booking-form .form-header h2 {
+
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 900;
+  color: #fff;
+  font-size: 42px;
+  text-transform: capitalize;
+}
+
+.booking-form .form-header p {
+  color: #fff;
+  font-size: 18px;
+}
+
+.booking-form .form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.booking-form .form-control {
+  background-color: #e5e5e5;
+  height: 45px;
+  padding: 0px 15px;
+  color: orange;
+  border: 1px solid #e5e5e5;
+  font-size: 20px;
+  font-weight: 700;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 40px;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.booking-form .form-control::-webkit-input-placeholder {
+  color: #e5e5e5;
+}
+
+.booking-form .form-control:-ms-input-placeholder {
+  color: #e5e5e5;
+}
+
+.booking-form .form-control::placeholder {
+  color: var(--color-content);
+}
+
+.booking-form .form-control:focus {
+  background: #f8f8f8;
+}
+
+.booking-form input[type="date"].form-control:invalid {
+  color: #e5e5e5;
+}
+
+.booking-form select.form-control {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.booking-form select.form-control:invalid {
+  color: orange;
+}
+
+.booking-form select.form-control option {
+  color: orange;
+}
+
+.booking-form select.form-control+.select-arrow {
+  position: absolute;
+  right: 3px;
+  bottom: 5px;
+  width: 32px;
+  line-height: 32px;
+  height: 32px;
+  text-align: center;
+  pointer-events: none;
+  color: orange;
+  font-size: 14px;
+}
+
+.booking-form select.form-control+.select-arrow:after {
+  content: '\279C';
+  display: block;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.booking-form .form-label {
+  color: orange;
+  text-transform: uppercase;
+  line-height: 24px;
+  height: 24px;
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 20px;
+}
+
+.booking-form .form-btn {
+  margin-top: 30px;
+}
+
+.booking-form .submit-btn {
+  display: block;
+  width: 100%;
+  color: #fff;
+  background-color: rgba(236, 155, 68, 1);
+  font-weight: 700;
+  font-size: 18px;
+  border: none;
+  border-radius: 40px;
+  height: 55px;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.booking-form .submit-btn:hover,
+.booking-form .submit-btn:focus {
+  background-color:rgba(236, 155, 68, 0.7);
+}
+
+@media only screen and (max-width: 768px) {
+  .booking-form .booking-bg {
+    position: relative;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: -15px;
+    width: 95%;
+    margin: auto;
+  }
+  .booking-form>form {
+    margin-left: 0px;
+  }
+}
+
+/*Noti*/
+/*Noti*/
+@keyframes noti{
+  from{
+    transform: translateY(-140px);
+    opacity: 0;
+  }
+  to{
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+#noti{
+  position: absolute;
+  z-index: 100;
+  top: 44%;
+  right: 15%;
+  left: 15%;
+  animation-name: noti;
+  animation-duration: 1s;
+}

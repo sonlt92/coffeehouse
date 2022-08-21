@@ -1,0 +1,113 @@
+<div class="box-container" style="font-family: 'Times New Roman';background-color: #13131a;color: rgb(236, 155, 68);margin-top: 100px ">
+  <div class="row">
+    <div class="col-3 magin-top">
+      <b class="b">Tìm Kiếm</b>
+    </div>
+    <div class="col-3">
+      <input class="form-control me-2 inputsearch" [(ngModel)]="codeName" type="search" placeholder="Mã Món"
+             aria-label="Search">
+    </div>
+    <div class="col-3 "><input class="form-control me-2 inputsearch" [(ngModel)]="nameProduct" type="search"
+                               placeholder="Tên Món" aria-label="Search">
+    </div>
+    <div class="col-3 ">
+      <button class="btn-outline-info search" type="button" (click)="searchPage()">
+        <i class='bx bx-search bx-md'></i>
+      </button>
+      <div *ngIf="trangChu == false">
+        <button class="btn create" (click)="trangchu()"> Trở Về</button>
+      </div>
+    </div>
+  </div>
+  <h4 *ngIf="message" style="text-align: center;color:red;font-size: 15px"><b>{{message}}</b></h4>
+
+  <div class="row" style="margin-top: 10px">
+    <div class="col-1">
+    </div>
+    <div class="col-2">
+
+      <a [routerLink]="'/product/create'">
+        <button class="btn text-center create">
+          Thêm Món
+        </button>
+      </a>
+    </div>
+  </div>
+  <section class="menu" id="menu">
+    <h1 class="heading"> Danh Sách<span style="color: #d3ad7f;font-size: 20px"> Món Ăn</span></h1>
+
+    <div class="box-container">
+
+      <div class="box" *ngFor="let product of productList" style="height: 600px;width: 300px;position: relative">
+        <div>
+          <img [src]="product.imageProduct" alt="">
+          <h3 hidden>{{product.idProduct}}</h3>
+          <h3>Mã Món:{{product.codeProduct}}</h3>
+          <h3>Tên Món Ăn:{{product.nameProduct}}</h3>
+          <h3>Loại:{{product.typeProduct.nameTypeProduct}}</h3>
+          <div class="price">Giá: {{product.priceProduct | currency:"VND"}}
+            <span> {{(product.priceProduct + product.priceProduct / 100) }}</span></div>
+          <div class="desc-product">
+            <p>Mô Tả : {{product.descriptionProduct}}</p>
+          </div>
+        </div>
+        <div style="position: absolute;    top: 552px;left: 43px;width: 70%;">
+          <!--          Edit-->
+
+          <a [routerLink]="'/product/edit/' + product.idProduct">
+            <button class="btn edit">Sửa Món</button>
+          </a>
+          <a data-toggle="modal" [attr.data-target]="'#exampleModalCenter'+product.idProduct">
+            <button class="btn edit">Xoá Món</button>
+          </a>
+          <!-- Modal -->
+          <div class="modal fade" [attr.id]="'exampleModalCenter'+product.idProduct" tabindex="-1" role="dialog"
+               aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin-left: 500px">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content" style="border: 2px lightgoldenrodyellow solid">
+                <div class="modal-header" style="background-color: gray;">
+                  <h5 class="modal-title modaltextdelete" id="exampleModalLongTitle">Delete</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                          style="background-color: transparent">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" style="background: #13131a;color: white">
+                  <div>Bạn có muốn xoá : {{product.nameProduct}}</div>
+                  <div><img [src]="product.imageProduct" alt=""></div>
+                </div>
+                <div class="modal-footer" style="background: #13131a;color: white">
+                  <button type="button" class="btn btn-secondary delete" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary delete" data-dismiss="modal"
+                          (click)="delete(product.idProduct)">Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+  <div class="row" *ngIf="trangChu == true">
+    <div class="col-8"></div>
+    <div class="col-4" style="text-align: right;color: cornflowerblue;text-decoration-line: underline;font-size: 15px">
+      <a (click)="previod()" *ngIf="page>0"> <button class="btn changePage"><< Trang Trước</button></a>
+      <span style="color: white ;font-size: 12px;"> -  {{page + 1}} /{{totalPage}}  -</span>
+      <a (click)="next()" *ngIf="page<=totalPage-2"><button class="btn changePage">Trang Sau >></button></a>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="trangChu == false">
+    <div class="col-8"></div>
+    <div class="col-4" style="text-align: right;color: cornflowerblue;text-decoration-line: underline;font-size: 15px">
+      <a (click)="previodPage()" *ngIf="pageSearch>0"> <button class="btn changePage"><< Trang Trước</button> </a>
+      <span style="color: white ;font-size: 12px"> -  {{pageSearch + 1}} /{{totalPageSearch}}  -</span>
+      <a (click)="nextPage()" *ngIf="pageSearch<totalPageSearch-1"><button class="btnv changePage">Trang Sau >></button></a>
+    </div>
+  </div>
+</div>
+
+

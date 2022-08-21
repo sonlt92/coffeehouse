@@ -1,0 +1,58 @@
+* {
+  font-weight: 500;
+}
+
+/*.body-1{
+  content: ' ';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  background-image: url("../../../assets/img/login-background.jpeg");
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+}*/
+/*list product*/
+.list-product-title {
+  width: 100%;
+  text-transform: uppercase;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: rgb(236, 155, 68);
+  text-align: center;
+}
+
+.list-product-subtitle {
+  width: 100%;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+
+}
+
+/*product card*/
+.card-product {
+  width: 100%;
+  margin-left: 5px;
+  margin-right: 5px;
+  overflow: hidden;
+}
+
+.sale-group {
+  text-align: center;
+}
+
+.sale-group .card-title {
+  color: green;
+}
+
+.sale-group .status {
+  color: green !important;
+}
+
+.table {
+  text-align: center;
+}
+

@@ -1,0 +1,76 @@
+<div id="booking" class="section">
+  <div class="section-center">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="booking-form">
+          <div class="booking-bg">
+            <div class="form-header">
+              <div class="form-header">
+                <h2>Quản lý Cafe Thông Minh - A0721I1</h2>
+                <p>Một tách cà phê uống vào buổi sáng mang lại sự hưng phấn tuyệt vời mà không một tách cà phê nào khác dù là buổi chiều hay buổi tối có thể tạo ra được.</p>
+                                     </div>
+            </div>
+          </div>
+          <form style="width: 50%" [formGroup]="updateForm" (ngSubmit)="update()">
+            <input type="hidden"  class="form-control" formControlName="idTable">
+            <div class="header-content">
+              <h2>Chỉnh sửa bàn</h2>
+            </div>
+            <div class="form-group">
+              <span class="form-label">ID Bàn <i class="text-danger">(*)</i></span>
+              <input class="form-control" formControlName="codeTable" [(ngModel)]="table.codeTable"  type="text" readonly>
+              <span class="select-arrow"></span>
+            </div>
+            <div class="form-group">
+              <span class="form-label">Trạng thái bàn <i class="text-danger">(*)</i> </span>
+              <select id="select-status" class="form-control" formControlName="status">
+                <option *ngFor="let item of status" class="option" [value]="item.idStatus"><p>{{item.nameStatus}}</p>
+                </option>
+              </select>
+              <span class="select-arrow"></span>
+              <div *ngIf="updateForm.get('status').valid && updateForm.get('status').touched">
+                <p *ngIf="updateForm.get('status').errors.required"></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-btn col-md-6">
+                <button type="button" class="submit-btn" data-toggle="modal" data-target="#exampleModal">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="29px"
+                       style="fill: white; line-height: 10px;">
+                    <path d="m8.121 12 4.94-4.939-2.122-2.122L3.879 12l7.06 7.061 2.122-2.122z"></path>
+                    <path d="M17.939 4.939 10.879 12l7.06 7.061 2.122-2.122L15.121 12l4.94-4.939z"></path>
+                  </svg> Trở về
+                </button>
+              </div>
+              <div class="form-btn col-md-6">
+                <button class="submit-btn" type="submit" (click)="check()">Chỉnh sửa</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">Xác nhận trở về</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="color: red; text-align: center">
+          Bạn có muốn quay lại trang danh sách!!!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="return()">Đồng ý</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

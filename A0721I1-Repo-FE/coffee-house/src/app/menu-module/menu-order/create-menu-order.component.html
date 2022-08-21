@@ -1,0 +1,327 @@
+<!-- Modal notification -->
+<div [hidden]="true" id="noti" class="alert alert-warning alert-dismissible fade show position-fixed sticky-top" role="alert">
+  <h4 class="alert-heading text-warning">Thông báo!!</h4>
+  <strong>Xin chào!</strong>
+  <p>{{message}}</p>
+  <button type="button" class="close" (click)="hide()" aria-label="Close">
+    <span>&times;</span>
+  </button>
+  <hr>
+</div>
+<div class="menu__container">
+  <div class="row w-100 h-100 m-mb-0 d-mb-block">
+    <div class="col-sm-3 col-md-4 col-lg-3 p-mb-0">
+      <ul class="navbar__menu-list">
+        <li (click)="getTypeOfGet(0)" [ngClass]="checkGetAll==true?'active':null">Tất cả</li>
+        <li (click)="getTypeOfGet(productType.idTypeProduct)"
+            [ngClass]="checkGetAll == false && idTypeProduct == productType.idTypeProduct?'active':null"
+            *ngFor="let productType of typeProducts">{{productType.nameTypeProduct}}</li>
+      </ul>
+
+      <ul (click)="showMenuOnPhone()" class="navbar__menu-list-on-phone">
+        <li>
+          <h3>Menu</h3>
+        </li>
+        <li>
+          <i class="fa-solid fa-list"></i>
+        </li>
+
+        <ul *ngIf="showMenuPhone" class="navbar__menu-list-child">
+          <li (click)="getTypeOfGet(0)" [ngClass]="checkGetAll==true?'active':null">Tất cả</li>
+          <li (click)="getTypeOfGet(productType.idTypeProduct)"
+              [ngClass]="checkGetAll == false && idTypeProduct == productType.idTypeProduct?'active':null"
+              *ngFor="let productType of typeProducts">{{productType.nameTypeProduct}}</li>
+        </ul>
+      </ul>
+    </div>
+
+    <div class="col-sm-9 col-md-8 col-lg-9">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-md-6" *ngFor="let product of products">
+              <div class="menu__item">
+                <div class="menu__item-img-group">
+                  <img [src]="product.imageProduct" alt="">
+                </div>
+
+                <div class="menu__item-body">
+                  <div class="info">
+                    <span class="name">{{product.nameProduct}}</span>
+                    <span class="price">
+                      {{product.priceProduct | number: '1.0-0'}} VND
+                    </span>
+                  </div>
+                  <button [disabled]="product.quatityProduct <= 0" (click)="getProductById(product.idProduct)" class="btn button btn-buy" data-toggle="modal"
+                          data-target="#modal1">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul class="pagination justify-content-center">
+            <li (click)="prevPage(true)" *ngIf="currentPage != 0">
+              <i class="fa-solid fa-angle-left"></i>
+            </li>
+            <li (click)="redirectPagination(tg+1 ,true)"
+                *ngFor="let tg of totalPageArray" [ngClass]="activedButton==tg+1?'active':null">{{tg + 1}}</li>
+            <li (click)="nextPage(true)" *ngIf="this.activedButton != this.totalPageArray.length">
+              <i class="fa-solid fa-angle-right"></i>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="menu__item-left-area">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-4">
+                <div class="footer">
+                  <div class="info">
+                    <p>
+                      <span>Số bàn: {{table.idTable}}</span>
+                    </p>
+
+                    <p>
+                      <span>Ngày: {{order.dateOrder | date :'dd/MM/yyyy'}}</span>
+                    </p>
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-between">
+                    <button class="button mr-3">Gọi phục vụ</button>
+                    <button class="button">Phản hồi</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-8">
+                <div class="menu__item-left-area-left">
+                  <div *ngIf="dataDTOExisting">
+                    <table class="table__order-item">
+                      <tr>
+                        <th></th>
+                        <th>STT</th>
+                        <th>Tên món</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                        <th>Tổng tiền</th>
+                        <th>Thời gian chờ</th>
+                      </tr>
+
+                      <ng-container *ngIf="dataDTOExisting">
+                        <tr *ngFor="let menuOrderDTO of menuOrderDTOs;let i = index">
+                          <td>
+                            <input
+                              type="checkbox" [checked]="menuOrderDTO.checked" (click)="checkFoodChosen(menuOrderDTO.orderDetailId , menuOrderDTO)">
+                          </td>
+                          <td>{{i + 1}}</td>
+                          <td>{{menuOrderDTO.nameProduct}}</td>
+                          <td>{{menuOrderDTO.quantity}}</td>
+                          <td>{{menuOrderDTO.price |number:'1.0'}} VND</td>
+                          <td>{{menuOrderDTO.totalPrice| number:'1.0'}} VND</td>
+                          <td>{{counter | formatTime}}</td>
+                        </tr>
+                      </ng-container>
+                    </table>
+
+                    <ng-container>
+                      <ul class="pagination">
+                        <li (click)="prevPage(false)" *ngIf="currentPageTable != 0">
+                          <i class="fa-solid fa-angle-left"></i>
+                        </li>
+                        <li (click)="redirectPagination(tg+1, false)"
+                            *ngFor="let tg of totalPageTableArray" [ngClass]="activedButtonTable==tg+1?'active':null">{{tg + 1}}</li>
+                        <li (click)="nextPage(false)" *ngIf="this.activedButtonTable != this.totalPageTableArray.length">
+                          <i class="fa-solid fa-angle-right"></i>
+                        </li>
+                      </ul>
+                    </ng-container>
+                  </div>
+
+                  <div *ngIf="order.totalOrder" class="total-price">
+                    <span>Tổng tiền: </span>
+                    <h3>{{order.totalOrder| number:'1.0'}} VND</h3>
+                  </div>
+
+                  <div class="menu__item-function">
+                    <button class="button" data-toggle="modal" data-target="#deleteModal">Xoá món</button>
+
+                    <button type="button" class="button" data-toggle="modal" data-target="#orderModal">Gọi món</button>
+
+                    <button type="button" class="button" data-toggle="modal" data-target="#paymentModal">
+                      Tính tiền
+                    </button>
+
+                    <button type="button" class="button" data-toggle="modal" data-target="#backModal">
+                      Trở lại
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Back -->
+<div class="modal fade" id="backModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Gọi món</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn có muốn trở lại trang trước không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/table/active"
+                style="background: #fa8c16">Đồng ý
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Order -->
+<div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Gọi món</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn có muốn gọi món không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="handleOrder()"
+                style="background: #fa8c16">Đồng ý
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xoá món</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn có muốn xóa những món này không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="handleDeleteFood()"
+                style="background: #fa8c16">Đồng ý
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Payment -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thanh toán</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn có muốn tính tiền không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="handlePayment()"
+                style="background: #fa8c16">Tính tiền
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal PopUP Order-->
+<div class="container d-flex justify-content-center mt-100">
+  <!-- Button to Open the Modal -->
+  <!-- The Modal -->
+  <div class="modal fade" id="modal1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content position-relative">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title font-weight-bold" style="font-size: 1.8rem">{{product?.nameProduct}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body" data-spy="scroll">
+          <div class="container">
+            <div class="row">
+              <div>
+                <div class="col">
+                  <img *ngIf="showImg" class="img-fluid" [src]="product.imageProduct">
+                </div>
+                <div class="col-xs-7 flex-custum" style="padding-top: 2vh;">
+                  <ul type="none">
+                    <!--                    <li class="font-weight-bold" style="font-size: 1.4rem">{{product?.nameProduct}}</li>-->
+                    <li class="font-weight-light " style="font-size: 1.5rem; margin-left: 3rem">{{product?.descriptionProduct | titlecase}}
+                    </li>
+                  </ul>
+                </div>
+                <div class="d-flex justify-content-around align-items-center">
+                  <span class="font-weight-bold" style="font-size: 1.4rem">{{product?.priceProduct * quatity}} VND</span>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <a class="px-2" (click)="subQuatity()" *ngIf="quatity === 1">
+                      <i class='bx bx-minus-circle bx-lg' style='color:#fa8c16 ; font-size: 1.5rem'></i>
+                    </a>
+                    <a class="px-2" (click)="subQuatity()" *ngIf="quatity > 1">
+                      <i class='bx bxs-minus-circle bx-lg' style='color:#fa8c16; font-size: 1.5rem'></i>
+                    </a>
+                    <span  style="font-size: 1.4rem">{{quatity}}</span>
+                    <a class="px-2" (click)="addQuality()">
+                      <i class='bx bxs-plus-circle bx-lg'
+                         style='color:#fa8c16'></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="submit"
+                    class="btn btn-primary btn-lg btn-block btn-custom"
+                    data-dismiss="modal" (click)="addOrderDetail(product?.idProduct)">{{product?.priceProduct * quatity}}
+              - Thêm vào
+              giỏ
+              hàng
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function a() {
+    var a = 0;
+    a = a + 1;
+  }
+</script>

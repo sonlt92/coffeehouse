@@ -1,0 +1,138 @@
+<div class="container order">
+  <div class="my-2 page ">
+    <div class="p-5">
+      <section class="top-content bb d-flex justify-content-between">
+        <div class="logo">
+          <img src="" alt="" class="img-fluid">
+        </div>
+        <div class="top-left">
+          <div class="graphic-path">
+            <p>Coffee</p>
+          </div>
+          <div class="position-relative" *ngFor="let detail of orderDetail; let i = index">
+            <p *ngIf="i<1">Coffee số. <span>{{detail.order.idOrder}}</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="store-user mt-3">
+        <div class="col-12">
+          <div class="row bb pb-3">
+            <div class="col-7" *ngFor="let detail of orderDetail; let i = index">
+              <p *ngIf="i<1">Nhân Viên,</p>
+              <h2 *ngIf="i<1">{{detail.order.employee.nameEmployee}}</h2>
+              <p class="address" *ngIf="i<1"> {{detail.order.employee.addressEmployee}}
+                <!--                12 Nguyễn Như Hạnh, <br> Liên Chiểu <br>Đà Nẵng -->
+              </p>
+            </div>
+            <div class="col-5">
+            </div>
+          </div>
+          <div class="row  extra-info pt-1">
+            <div class="col-7" *ngFor="let detail of orderDetail; let i = index">
+              <p *ngIf="i<1">
+                Ngày mua: <span>{{detail.order.dateOrder|date:'dd/MM/yyyy'}}</span>
+              </p>
+            </div>
+            <div class="col-5">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="product-area mt-2">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <td>STT</td>
+            <td>Chi tiết sản phẩm</td>
+            <td>Giá</td>
+            <td>Số lượng</td>
+            <td>Tổng</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let detail of orderDetail; let i = index">
+            <td>{{i + 1| number}}</td>
+            <td>
+              <div class="media">
+                <img class="mr-3 img-fluid" [src]="detail.product.imageProduct" alt="Product">
+                <div class="media-body">
+                  <p class="mt-0 title">{{detail.product.nameProduct}}</p>
+                </div>
+              </div>
+            </td>
+            <td>{{detail.product.priceProduct | number}} <span>VNĐ</span></td>
+            <td>{{detail.numberProduct}}</td>
+            <td>{{detail.totalProduct | number}}  <span>VNĐ</span></td>
+          </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="balance-info">
+        <div class="row">
+          <div class="col-7">
+          </div>
+          <div class="col-5">
+            <table class="table border-0 table-hover">
+              <tfoot>
+              <tr *ngFor="let detail of orderDetail; let i = index">
+                <td *ngIf="i<1">Tổng tiền thu:</td>
+                <td *ngIf="i<1">{{detail.order.totalOrder | number}}  <span>VNĐ</span></td>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cart BG -->
+
+      <div class="container mt-4 mb-4">
+        <div class="row d-flex justify-content-center">
+          <footer>
+            <hr>
+            <p class="m-0 text-center">
+              Cảm ơn bạn đã ủng hộ chúng tôi!
+            </p>
+            <div class="social pt-3">
+                    <span class="pr-2">
+                        <i class='bx bx-mobile bx-sm'></i>
+                        <span>0123456789</span>
+                    </span>
+              <span class="pr-2">
+                  <i class='bx bxs-envelope bx-sm'></i>
+                        <span>a0721i1@codegym.com</span>
+                    </span>
+              <span class="pr-2">
+                        <i class='bx bxl-facebook bx-sm'></i>
+                        <span>/codegym.a0721i1</span>
+                    </span>
+              <span class="pr-2">
+                       <i class='bx bxl-youtube bx-sm'></i>
+                        <span>/codegym</span>
+                    </span>
+              <span class="pr-2">
+                       <i class='bx bxl-github bx-sm'></i>
+                        <span>/codegym</span>
+                    </span>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-2" >
+    <div class="col-4"></div>
+    <div class="col-4">
+      <a [routerLink]="['/order/order-child']" class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18px" style="fill: white; line-height: 54px; ">
+          <path d="m8.121 12 4.94-4.939-2.122-2.122L3.879 12l7.06 7.061 2.122-2.122z"></path>
+          <path d="M17.939 4.939 10.879 12l7.06 7.061 2.122-2.122L15.121 12l4.94-4.939z"></path>
+        </svg>
+        Trở về
+      </a>
+      <div class="col-4"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phản hồi</title>
+  <!--    Bootstrap CSS-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!--    Boxicon CSS-->
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div class="container d-flex justify-content-center mt-100">
+
+  <!-- Button to Open the Modal -->
+  <button type="button" class="btn openmodal" data-toggle="modal" data-target="#modal1" style="background: #212529; color: white; size: 500px">
+    Phản hồi
+  </button>
+  <!-- The Modal -->
+  <div class="modal fade" id="modal1" >
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="form" [formGroup]="createFeedbackForm" (ngSubmit)="onSubmit()">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header" style="background: rgb(236, 155, 68)">
+            <h4 class="modal-title">Phản Hồi Mới</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body" data-spy="scroll">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <span class="form-label" for="namePeopleFeedback">Họ và tên<span class="text-danger">(*):</span></span>
+                    <input class="form-control" type="text" formControlName="namePeopleFeedback" style="font-size: 20px">
+                    <div class="text-danger" *ngFor="let validation of VALIDATE_MESSAGES.namePeopleFeedback">
+                      <div class="error-message"
+                           *ngIf="createFeedbackForm.get('namePeopleFeedback').hasError(validation.type) && (createFeedbackForm.get('namePeopleFeedback').dirty ||
+                            createFeedbackForm.get('namePeopleFeedback').touched)">
+                        {{validation.message}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <span class="form-label" for="emailPeopleFeedback">Email<span class="text-danger">(*):</span></span>
+                    <input class="form-control" type="email" formControlName="emailPeopleFeedback" style="font-size: 20px">
+                    <div class="text-danger" *ngFor="let validation of VALIDATE_MESSAGES.emailPeopleFeedback">
+                      <div class="error-message"
+                           *ngIf="createFeedbackForm.get('emailPeopleFeedback').hasError(validation.type) && (createFeedbackForm.get('emailPeopleFeedback').dirty ||
+                            createFeedbackForm.get('emailPeopleFeedback').touched)">
+                        {{validation.message}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <span class="form-label" for="imageFeedback">Hình ảnh<span class="text-danger">(*):</span></span>
+                    <input class="form-control-file" type="file" name="imageFeedback" id="imageFeedback" (change)="showPreview($event)">
+                    <img [src]="imgVip" height="200" width="300" alt="Image preview...">
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <span class="form-label" for="contentFeedback">Phản hồi<span class="text-danger">(*):</span></span>
+                    <textarea class="form-control" type="text" style="height: 200px" formControlName="contentFeedback" style="font-size: 20px"></textarea>
+                    <div class="text-danger" *ngFor="let validation of VALIDATE_MESSAGES.contentFeedback">
+                      <div class="error-message"
+                           *ngIf="createFeedbackForm.get('contentFeedback').hasError(validation.type) && (createFeedbackForm.get('contentFeedback').dirty ||
+                            createFeedbackForm.get('contentFeedback').touched)">
+                        {{validation.message}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-lg btn-block btn-custom" data-dismiss="modal"
+                    style="margin: 5px 0 0 2.5px;">
+              Đóng
+            </button>
+            <button type="submit" style="margin: 5px 0 0 2.5px;" (click)="onSubmit()" data-dismiss="modal" class="btn btn-primary btn-lg btn-block btn-custom">Gửi Phản hồi</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+</body>
+<!--Bootstrap JS-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<!--Boxicon icon-->
+<script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+</html>
+

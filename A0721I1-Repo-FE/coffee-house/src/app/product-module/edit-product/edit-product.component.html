@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sửa Món</title>
+  <link href="http://fonts.googleapis.com/css?family=Playfair+Display:900" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Alice:400,700" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
+
+<div id="booking" class="section">
+  <div class="section-center">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="booking-form">
+          <div class="booking-bg">
+            <div class="form-header">
+              <h2>Quản Lý Cafe Thông Minh - A0721I1</h2>
+              <p>Một tách cà phê uống vào buổi sáng mang lại sự hưng phấn tuyệt vời mà không một tách cà phê nào khác dù là buổi chiều hay buổi tối có thể tạo ra được</p>
+            </div>
+          </div>
+          <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
+            <div class="header-content">
+              <h2>Thêm Món</h2>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Mã Số Món<a style="color: red"> (*)</a> :</span>
+                  <input class="form-control" formControlName="codeProduct" disabled type="text" id="exampleFormControlInput1">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Tên Món<a style="color: red"> (*)</a> :</span>
+                  <input class="form-control" formControlName="nameProduct" type="text" >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Giá (VNĐ)<a style="color: red"> (*)</a> :</span>
+                  <input class="form-control" formControlName="priceProduct" type="text">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Số lượng<a style="color: red"> (*)</a> :</span>
+                  <input class="form-control" formControlName="quatityProduct" type="number">
+<!--                  <div *ngFor="let validation of VALIDATION_MESSAGE.amountProduct" class="text-danger">-->
+<!--                    <div *ngIf="createForm.get('amountProduct').hasError(validation.type) && (createForm.get('amountProduct').dirty || createForm.get('amountProduct').touched)"-->
+<!--                         class="error-message">-->
+<!--                      {{validation.message}}</div>-->
+<!--                  </div>-->
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Mô tả :</span>
+                  <input class="form-control" formControlName="descriptionProduct" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Nhóm Món<a style="color: red"> (*)</a> :</span>
+                  <select class="form-control" formControlName="typeProduct" id="val-skill" name="val-skill" [ngClass]="{ 'is-invalid': submitted && valueSelect.typeProduct.errors }">
+                    <option *ngFor="let index of typeProduct" [ngValue]="index"
+                            [selected]="index.idTypeProduct === editForm.controls.typeProduct.value.idTypeProduct">{{index.nameTypeProduct}}</option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="submitted && valueSelect.typeProduct.errors">
+                    <div *ngIf="valueSelect.typeProduct.errors.required">
+                      Vui lòng chọn nhóm món.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Hình ảnh <a style="color: red"> (*)</a> :</span>
+                </div>
+                <input name="imageProduct" id="imageProduct" type="file" class="file__input" (change)="showPreview($event)"
+                       required="required" >
+                <img style="height: 160px; width: 160px;" src="{{imgVip}}">
+                <label for="imageProduct" class="file__label">
+
+                </label>
+                <div>
+                  <p style="color: red" *ngIf=" errorImage!= ''">{{errorImage}}</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="form-btn col-md-6">
+                <a [routerLink]="'/product/list'"><button class="submit-btn" (click)="back()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18px" style="fill: white; line-height: 54px; msFilter:''"><path d="m8.121 12 4.94-4.939-2.122-2.122L3.879 12l7.06 7.061 2.122-2.122z"></path><path d="M17.939 4.939 10.879 12l7.06 7.061 2.122-2.122L15.121 12l4.94-4.939z"></path></svg>
+                  Trở về</button></a>
+              </div>
+              <div class="form-btn col-md-6">
+                <button class="submit-btn" type="submit" >Cập Nhật</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+
+</html>

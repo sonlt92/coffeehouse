@@ -1,0 +1,139 @@
+
+<div class="container-lg">
+  <div class="container-fluid" style="height:191px; margin-bottom: 70px; width: 1000px">
+    <div style="background-color: #FA8C16; height:191px;width: 970px; position: absolute; opacity: 30%"></div>
+    <img src="/assets/images/1.jpg" style="height:191px" class="img-fluid"/>
+  </div>
+
+
+  <p class="label" style="color: gray; font-size: 12pt; padding-left: 0; margin-top: 10px"><a href="#" style="color: #FA8C16">Quản lý </a> / Quản lý Phản hồi </p>
+  <div class="container">
+    <h2 style="color: #FA8C16; font-size: 24pt; padding: 0; display: flex; justify-content: center" class="label">Quản lý phản hồi</h2>
+  </div>
+
+
+  <div class="label" style="display: flex;align-items: center; justify-content: center; margin-top: 20px">
+    <p style="color: #FA8C16; font-size: 16px; margin-top: 10px">Ngày phản hồi: </p>
+    <form [formGroup]="searchFeedback" (ngSubmit)="search()" style="display: flex;align-items: center;">
+      <input type="date" class="form-control" formControlName="date" style="width: 200px; margin-left: 15px">
+      <button class="btn1" style="margin: 0 15px">Tìm kiếm</button>
+    </form>
+    <button class="btn1" (click)="ngOnInit()">Hiện tất cả</button>
+  </div>
+
+  <div *ngIf="message; else elseBlock">Not Found!</div>
+  <ng-template #elseBlock>
+  <table class="table" style="margin-top: 30px">
+    <tr style=" box-shadow: 0 2px 5px #FA8C16; font-size: 15px">
+      <th>STT</th>
+      <th>Mã số phản hồi</th>
+      <th>Ngày phản hồi</th>
+      <th>Người tạo</th>
+      <th>Email</th>
+      <th>Phản hồi</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let feedback of feedbackList;index as i">
+      <div hidden>{{feedback.idFeedback}}</div>
+      <td>{{i + 1}}</td>
+      <td>{{feedback.codeFeedback}}</td>
+      <td>{{feedback.dateFeedback}}</td>
+      <td>{{feedback.namePeopleFeedback}}</td>
+      <td>{{feedback.emailPeopleFeedback}}</td>
+      <td style="overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 300px;">{{feedback.contentFeedback}}</td>
+<!--      <td><a data-bs-toggle="modal" data-bs-target="#feedbackInfo"><i class="fas fa-eye" style="color: #FA8C16"></i></a></td>-->
+      <td><button type="button" class="btn1" data-toggle="modal" data-target="#feedbackInfo" (click)="getDetailFeedback(feedback.idFeedback)">
+        Detail
+      </button></td>
+    </tr>
+  </table>
+
+  <div class="label" style="display: flex; justify-content: center;color: #FA8C16; font-size: 16px">
+    <nav aria-label="Page navigation example">
+      <ul class="label" style="display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 1rem;
+    color: white;
+    font-size: 16px;">
+        <li [hidden]="totalPagination==1" class="page-item"><a class="page-link1" (click)="firstPage()">Đầu</a></li>
+        <li [hidden]="totalPagination==1" class="page-item"><a class="page-link1" (click)="previousPage()">Trang trước</a></li>
+        <!--                    <li class="page-item active"><a class="page-link" href="#">1</a></li>-->
+        <li class="page-item col-md-1 col-2  px-0">
+          <!--                        <input class="form-control shadow-none rounded-0" type="text" placeholder="2/5">-->
+          <div class="input-group">
+            <input [hidden]="totalPagination==1" type="number" min="1" class="form-control text-right rounded-0"
+                   aria-describedby="basic-addon1" [value]="indexPagination" (change)="indexPaginationChange($event)">
+          </div>
+        </li>
+        <li>
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">{{totalPagination}}</span>
+          </div>
+        </li>
+        <li [hidden]="totalPagination==1" class="page-item">
+          <button class="page-link1" (click)="findPagination()">Đi</button>
+        </li>
+        <li [hidden]="totalPagination==1" class="page-item"><a class="page-link1" (click)="nextPage()">Trang kế</a></li>
+        <li [hidden]="totalPagination==1" class="page-item"><a class="page-link1" (click)="lastPage()">Cuối</a></li>
+      </ul>
+    </nav>
+  </div>
+  </ng-template>
+
+  <div class="modal fade font-modal" id="feedbackInfo">
+    <div class=" modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content" style="border-radius: 1rem;">
+          <div class="modal-header" style="display:inline ;font-size: 20px;background: #FA8C16;color: white; border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;">
+            <h5 class="modal-title" style="font-weight: bold">Chi tiết phản hồi</h5>
+<!--            <button type="button" class="close" data-dismiss="modal" style="margin: 0">&times;</button>-->
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <div class="col-4">Mã số phản hồi: </div>
+                <div class="col-8">{{feedbackDetail.codeFeedback}}</div>
+              </div>
+              <div class="row">
+                <div class="col-4">Ngày phản hồi: </div>
+                <div class="col-8">{{feedbackDetail.dateFeedback}}</div>
+              </div>
+              <div class="row">
+                <div class="col-4">Người tạo: </div>
+                <div class="col-8">{{feedbackDetail.namePeopleFeedback}}</div>
+              </div>
+              <div class="row">
+                <div class="col-4">Phản hồi: </div>
+                <div class="col-8">{{feedbackDetail.contentFeedback}} </div>
+              </div>
+              <div class="row">
+                <div class="col-12">Hình ảnh</div>
+                <div class="col-4"><img id="myImg" class="demo cursor" src="{{feedbackDetail.imageFeedback}}" style="width:100%" alt="image"></div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div id="myModal" class="modal1">
+
+    <!-- The Close Button -->
+    <span class="close">&times;</span>
+
+    <!-- Modal Content (The Image) -->
+    <img class="modal1-content" id="img01">
+
+    <!-- Modal Caption (Image Text) -->
+    <div id="caption"></div>
+  </div>
+<!--  <div class="footer">Copyright @2022</div>-->
+</div>

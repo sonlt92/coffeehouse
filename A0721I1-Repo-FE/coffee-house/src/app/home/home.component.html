@@ -1,0 +1,303 @@
+<!--!&#45;&#45; header section starts  &ndash;&gt;-->
+<!--<header class="header">-->
+
+<!--  <a href="#" class="logo">-->
+<!--    <img style="height: 75px" src="assets/images/logo.png" alt="">-->
+<!--  </a>-->
+<!--  <nav class="navbar">-->
+<!--    <a href="/home#home">Trang chủ</a>-->
+<!--    <a href="/home#about">Giới thiệu</a>-->
+<!--    <a href="/home#menu">Sản phẩm</a>-->
+<!--    <a href="/home#review">Đánh giá</a>-->
+<!--    <a href="/home#contact">Liên hệ</a>-->
+<!--    <a href="/employee/list" *ngIf="employee.position?.namePosition == 'Quản lý'"><span>Quản lý Nhân viên</span></a>-->
+<!--  </nav>-->
+
+<!--  <div class="icons">-->
+<!--    <input style="width: 250px; height: 35px; font-size: 40px;" name="keywork" type="text" />-->
+<!--    <div class='bx bx-search-alt-2 bx-lg' id="search-btn">-->
+<!--  </div>-->
+
+<!--    <div class='bx bxs-cart bx-lg' id="cart-btn">-->
+<!--    </div>-->
+<!--&lt;!&ndash;    <div class="nav-item dropdown show">&ndash;&gt;-->
+<!--&lt;!&ndash;        <a class='bx bxs-user-account bx-lg'></a>&ndash;&gt;-->
+<!--    <div class="dropdown">-->
+<!--      <div style="margin: 0; display: table;" *ngIf="!isLogin">-->
+<!--        <a routerLink="/login/authentication" class="btn-login"> Đăng nhập</a>-->
+<!--      </div>-->
+<!--      <button onclick="hamDropdown()" class =" bx bxs-user-account bx-lg" *ngIf="isLogin"></button>-->
+<!--      <div class="noidung_dropdown">-->
+<!--        <a [routerLink]="['/employee/detail/'] + tokenStorageService.getUser().id" (click)="getPositionById()" >Chi tiết tài khoản</a>-->
+<!--        <a (click)="logout()">Đăng xuất</a>-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+<!-- <header class="header">
+>>>>>>> 1f9071043e6c28181ceae41cd51b06656752ef36
+home section starts  -->
+
+<!-- home section starts  -->
+<section class="home" id="home">
+
+  <div class="content">
+    <h3 style="color:crimson;">CÀ PHÊ NGUYÊN CHẤT 100%</h3>
+    <h5 style="font-size: 29px"> Đúng chất - Đúng vị - Đúng cà phê</h5>
+    <p>Chúng tôi tin rằng từng sản phẩm THE COFFEE HOUSE khi được tạo ra từ cái Tâm, sự phấn đấu không ngừng, và kết hợp
+      niềm đam mê
+      để tạo nên sự khác biệt cho thương hiệu THE COFFEE HOUSE trên toàn quốc và vươn tầm ra toàn thế giới.</p>
+    <br>
+    <br>
+  </div>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+
+  <h1 class="heading"><span>Giới</span> thiệu </h1>
+
+  <div class="row">
+    <div class="image">
+      <img src="assets/images/about-img.jpeg" alt="">
+    </div>
+
+    <div class="content">
+      <h3 style="font-size: 25px">điều gì làm cho cà phê của chúng tôi trở nên đặt biệt?</h3>
+      <br>
+      <span>Không đơn thuần chỉ là một chuỗi cà phê phục vụ thức uống chất lượng, thơm ngon, đi đôi với phong cách và thái
+        độ thân thiện để ghi điểm với cộng đồng khách hàng.</span>
+      <br>
+      <br>
+      <span>Hơn thế, The Coffee House đã luôn đầu tư và phát triển để mang lại những giá trị mới đầy ý nghĩa.</span>
+      <br>
+      <br>
+      <span class="dots">...</span>
+      <span class="more-content">
+      <span>Hơn thế, The Coffee House đã luôn đầu tư và phát triển để mang lại những giá trị mới đầy ý nghĩa. Vậy nên, ngoài
+        giá trị thương mại, The Coffee House còn góp
+        phần mang đến những giá trị về tinh thần, văn hóa và phong cách sống của người Việt.</span>
+        <br>
+        <br>
+              <span>Một tách cà phê uống vào buổi sáng mang lại sự hưng phấn tuyệt vời mà không một tách cà phê nào khác dù là buổi chiều hay buổi tối có thể tạo ra được.</span>
+
+      </span>
+
+      <button class="read-more">Xêm thêm</button>
+
+    </div>
+  </div>
+</section>
+
+<!-- about section ends -->
+
+<!-- menu section starts  -->
+
+<section class="menu" id="menu">
+
+  <h1 class="heading"> Sản phẩm <span>mới nhất</span></h1>
+
+  <div class="box-container">
+
+    <div class="box" *ngFor="let product of products; index as i">
+      <img [src]="product.imageProduct" alt="">
+      <h3> {{product.nameProduct}} </h3>
+      <div class="price">{{product.priceProduct | number}} VNĐ</div>
+      <!--      <a href="#" class=" btn fa bx bxs-cart"> Thêm vào giỏ</a>-->
+    </div>
+  </div>
+
+</section>
+
+<!-- menu section ends -->
+
+<section class="products" id="products">
+
+  <h1 class="heading"> Sản phẩm <span>bán chạy</span></h1>
+  <div class="box-container">
+
+    <div class="box" *ngFor="let product of productsCart; index as i">
+      <div class="icons">
+        <a href="#" class="fa bx bxs-cart bx-lg"></a>
+        <a href="#" class="fas bx bxs-heart bx-lg"></a>
+        <a href="#" class="fas bx bxs-bullseye bx-lg"></a>
+      </div>
+      <div class="image">
+        <img [src]="product.imageProduct" alt="">
+      </div>
+      <div class="content">
+        <h3> {{product.nameProduct}}</h3>
+        <div class="stars">
+          <i class="fas bx bxs-star bx-md"></i>
+          <i class="fas bx bxs-star bx-md"></i>
+          <i class="fas bx bxs-star bx-md"></i>
+          <i class="fas bx bxs-star bx-md"></i>
+          <i class="fas bx bxs-star-half bx-md"></i>
+        </div>
+        <div class="price">{{product.priceProduct| number}} VNĐ</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- review section starts  -->
+
+<section class="review" id="review">
+
+  <h1 class="heading">Đánh giá <span>của khách hàng</span></h1>
+
+  <div class="box-container">
+
+    <div class="box">
+      <img src="assets/images/quote-img.png" alt="" class="quote">
+      <p style="font-size: 1.6rem">cà phê thơm ngơn, nguyên chất và đậm đà.</p>
+      <img src="assets/images/pic-1.png" class="user" alt="">
+      <h3>Trí Đạt</h3>
+      <div class="stars">
+        <i class="fas bx bxs-star bx-md"></i>
+        <i class="fas bx bxs-star bx-md"></i>
+        <i class="fas bx bxs-star bx-md"></i>
+        <i class="fas bx bxs-star bx-md"></i>
+        <i class="fas bx bxs-star-half bx-md"></i>
+      </div>
+    </div>
+
+    <div class="box">
+      <img src="assets/images/quote-img.png" alt="" class="quote">
+      <p>cà phê thơm ngơn, nguyên chất và đậm đà.</p>
+      <img src="assets/images/pic-2.png" class="user" alt="">
+      <h3>Jerry</h3>
+      <div class="stars">
+        <i class="fas bx bxs-star bx-md"></i>
+        <i class="fas bx bxs-star bx-md"></i>
+        <i class="fas bx bxs-star bx-md"></i>
+        <i class="fas bx bxs-star bx-md"></i>
+        <i class="fas bx bxs-star-half bx-md"></i>
+      </div>
+    </div>
+
+    <div class="box">
+      <img src="assets/images/quote-img.png" alt="" class="quote">
+      <p> cà phê thơm ngơn, nguyên chất và đậm đà</p>
+      <img src="assets/images/pic-3.png" class="user" alt="">
+      <h3>Xuân Tú</h3>
+      <div class="stars">
+        <i class="fas bx bxs-star bx-md"></i>
+        <i class="fas bx bxs-star bx-md"></i>
+        <i class="fas bx bxs-star bx-md"></i>
+        <i class="fas bx bxs-star bx-md"></i>
+        <i class="fas bx bxs-star-half bx-md"></i>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- review section ends -->
+
+<!-- contact section starts  -->
+
+<section class="contact" id="contact">
+
+  <h1 class="heading"><span>Liên hệ</span> chúng tôi </h1>
+
+  <div class="row">
+
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.092382556347!2d108.21963341416985!3d16.060695143934225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219cc595768af%3A0x6a8f3945d3f414c3!2sThe%20Coffee%20House!5e0!3m2!1svi!2s!4v1653915985686!5m2!1svi!2s"
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <form action="">
+      <h3>Liên lạc</h3>
+      <div class="inputBox">
+        <span class="fas bx bxs-user"></span>
+        <input type="text" placeholder="name">
+      </div>
+      <div class="inputBox">
+        <span class="fas bx bxs-envelope"></span>
+        <input type="email" placeholder="email">
+      </div>
+      <div class="inputBox">
+        <span class="fas bx bxs-phone bx-rotate-120"></span>
+        <input type="number" placeholder="number">
+      </div>
+      <input type="submit" value="liên hệ ngay" class="btn">
+    </form>
+
+  </div>
+
+</section>
+
+<!-- contact section ends -->
+
+<!-- blogs section starts  -->
+
+<!--<section class="blogs" id="blogs">-->
+
+<!--  <h1 class="heading">Sản phẩm <span> mới nhất</span></h1>-->
+
+<!--  <div style="text-align: center" class="box-container">-->
+
+<!--    <div class="box" *ngFor="let product of products; index as i">-->
+<!--      <div class="image">-->
+<!--        <img [src]="product.imageProduct" alt="" style="width: 500px">-->
+<!--      </div>-->
+<!--      <div class="content">-->
+<!--        <a class="title">{{product.nameProduct}}</a>-->
+<!--        <br>-->
+<!--        <div style="font-size: 20px;color: white" class="price">{{product.priceProduct| number}} Đ</div>-->
+
+<!--        <span>{{product.descriptionProduct}}</span>-->
+
+<!--        <a href="#" class="btn fa bx bxs-cart"> Thêm vào giỏ</a>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="box">-->
+<!--      <div class="image">-->
+<!--        <img src="assets/images/blog-2.jpeg" alt="">-->
+<!--      </div>-->
+<!--      <div class="content">-->
+<!--        <a  href="#" class="title">sản phẩm 9</a>-->
+<!--        <span>Cà phê đậm đà, thơm ngon nguyên chất.</span>-->
+<!--        <a href="#" class='btn fa bx bxs-cart'> Thêm vào giỏ</a>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="box">-->
+<!--      <div class="image">-->
+<!--        <img src="assets/images/blog-3.jpeg" alt="">-->
+<!--      </div>-->
+<!--      <div class="content">-->
+<!--        <a href="#" class="title">sản phẩm 12</a>-->
+<!--        <span>Cà phê đậm đà, thơm ngon nguyên chất.</span>-->
+<!--        <a href="#" class='btn fa bx bxs-cart' > Thêm vào giỏ</a>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!-- blogs section ends -->
+<section class="footer">
+
+  <div class="share">
+    <a href="https://www.facebook.com/" class='bx bxl-facebook bx-lg'></a>
+    <a href="#" class='bx bxl-twitter bx-lg'></a>
+    <a href="#" class='bx bxl-instagram bx-lg'></a>
+    <a href="#" class='bx bxl-linkedin-square bx-lg'></a>
+    <a href="#" class='bx bxl-pinterest bx-lg'></a>
+  </div>
+
+  <div class="links">
+    <a href="#">Trang chủ</a>
+    <a href="#">Giới thiệu</a>
+    <a href="#">Sản phẩm</a>
+    <a href="#">Đánh giá</a>
+    <a href="#">Liên hệ</a>
+  </div>
+
+</section>
